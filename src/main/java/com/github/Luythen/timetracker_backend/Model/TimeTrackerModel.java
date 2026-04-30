@@ -4,13 +4,16 @@ import java.time.LocalDate;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 @Document(collection = "TimeTracker")
 public class TimeTrackerModel {
 
     @Id
     private String id;
-    private String category;
+
+    @DocumentReference
+    private CategoryModel category;
     private String userID;
 
     private LocalDate startDate;
@@ -24,11 +27,11 @@ public class TimeTrackerModel {
         this.id = id;
     }
 
-    public String getCategory() {
+    public CategoryModel getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(CategoryModel category) {
         this.category = category;
     }
 
