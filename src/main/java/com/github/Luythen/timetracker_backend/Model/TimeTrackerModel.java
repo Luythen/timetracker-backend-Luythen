@@ -14,7 +14,9 @@ public class TimeTrackerModel {
 
     @DocumentReference
     private CategoryModel category;
-    private String userID;
+
+    @DocumentReference
+    private UserModel userModel;
 
     private LocalDate startDate;
     private LocalDate stopDate;
@@ -35,14 +37,6 @@ public class TimeTrackerModel {
         this.category = category;
     }
 
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -57,6 +51,14 @@ public class TimeTrackerModel {
 
     public void setStopDate(LocalDate stopDate) {
         this.stopDate = stopDate;
+    }
+
+    public UserModel getUserModel() {
+        return userModel;
+    }
+
+    public void setUserModel(UserModel userModel) {
+        this.userModel = userModel;
     }
 
 }

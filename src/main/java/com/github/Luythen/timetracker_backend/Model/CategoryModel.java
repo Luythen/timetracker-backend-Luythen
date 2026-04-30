@@ -2,6 +2,7 @@ package com.github.Luythen.timetracker_backend.Model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 @Document(collection = "Category")
 public class CategoryModel {
@@ -9,7 +10,9 @@ public class CategoryModel {
     @Id
     private String id;
     private String name;
-    private String userID;
+    
+    @DocumentReference
+    private UserModel userModel;
     
     public String getId() {
         return id;
@@ -23,12 +26,11 @@ public class CategoryModel {
     public void setName(String name) {
         this.name = name;
     }
-    public String getUserID() {
-        return userID;
+    public UserModel getUserModel() {
+        return userModel;
     }
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setUserModel(UserModel userModel) {
+        this.userModel = userModel;
     }
-
     
 }
