@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.Luythen.timetracker_backend.Dto.LoginDto;
 import com.github.Luythen.timetracker_backend.Model.UserModel;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,6 +35,7 @@ public class AuthController {
             cookie.setMaxAge(86400);
             cookie.setSecure(true);
             cookie.setHttpOnly(true);
+            cookie.setAttribute("SameSite", "None");
             cookie.setPath("/");
 
             response.addCookie(cookie);
