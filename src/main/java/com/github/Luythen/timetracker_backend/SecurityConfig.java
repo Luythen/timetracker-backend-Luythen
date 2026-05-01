@@ -22,8 +22,10 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> 
             auth.requestMatchers("/timetracker/**").authenticated()
             .requestMatchers("/category/**").authenticated()
+            .requestMatchers("/auth/**").permitAll()
             .anyRequest().permitAll()
         )
+        .csrf(csrf -> csrf.disable())
         .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
         .build();
     }
