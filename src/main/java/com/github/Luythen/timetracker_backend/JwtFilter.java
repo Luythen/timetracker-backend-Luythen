@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.github.Luythen.timetracker_backend.Model.UserModel;
@@ -18,6 +19,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+@Service
 public class JwtFilter extends OncePerRequestFilter {
 
     @Autowired
@@ -41,11 +43,10 @@ public class JwtFilter extends OncePerRequestFilter {
 
         if (jwt != null) {
             UserModel userDetails = (UserModel) userDetailServiceImpl.loadUserByUsername(jwtService.getClaims(jwt).getSubject());
-
-           if (jwtService.isTokenValid(jwt, userDetails)) {
+            if (jwtService.isTokenValid(jwt, userDetails)) {
                 Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-           }
+            }
         }
         
         filterChain.doFilter(request, response);
