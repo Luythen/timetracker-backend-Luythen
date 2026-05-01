@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/auth")
 public class AuthController {
 
-    @Value("${Timetracker.origin}")
+    @Value("${Timetracker.domain}")
     private String domain;
     
     private final AuthService authService;
