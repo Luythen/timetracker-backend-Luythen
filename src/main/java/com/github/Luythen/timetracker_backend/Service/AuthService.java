@@ -36,6 +36,7 @@ public class AuthService {
         try {
             String passwrd = user.getPassword();
             user.setPassword(passwordEncoder.encode(passwrd));
+            user.setRole("User");
             userRepository.insert(user);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
