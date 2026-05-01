@@ -3,6 +3,7 @@ package com.github.Luythen.timetracker_backend.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.Luythen.timetracker_backend.Model.TimeTrackerModel;
+import com.github.Luythen.timetracker_backend.Model.UserModel;
 import com.github.Luythen.timetracker_backend.Service.TimeTrackerService;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -38,9 +40,9 @@ public class TimeTrackerController {
         return "{'message': 'Timer have been stop for the id: "+ id +" '}";
     }
     
-    @GetMapping("/list/{id}")
-    public List<TimeTrackerModel> getListByUserID (@PathVariable String userID) {
-        return timeTrackerService.getUserList(userID);
+    @GetMapping("/list")
+    public List<TimeTrackerModel> getListByUserID (@AuthenticationPrincipal UserModel userModel) {
+        return timeTrackerService.getUserList(userModel);
     }
     
 
