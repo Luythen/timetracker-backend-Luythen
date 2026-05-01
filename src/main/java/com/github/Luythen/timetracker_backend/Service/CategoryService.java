@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.github.Luythen.timetracker_backend.Model.CategoryModel;
+import com.github.Luythen.timetracker_backend.Model.UserModel;
 import com.github.Luythen.timetracker_backend.Repository.CategoryRepository;
 
 @Service
@@ -21,8 +22,8 @@ public class CategoryService {
         return categoryRepository.findById(id);
     }
 
-    public List<CategoryModel> getAllCategorysByUserID (String userID) {
-        return categoryRepository.findAllByUserID(userID);
+    public List<CategoryModel> getAllCategorysByUserID (UserModel userModel) {
+        return categoryRepository.findAllByUserModel(userModel);
     }
 
     public void updateCategoryName (String id, String newName) {
