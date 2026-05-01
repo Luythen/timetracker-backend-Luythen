@@ -21,9 +21,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-
-    @Value("${Timetracker.domain}")
-    private String domain;
     
     private final AuthService authService;
 
@@ -39,7 +36,6 @@ public class AuthController {
             cookie.setMaxAge(86400);
             cookie.setSecure(true);
             cookie.setHttpOnly(true);
-            cookie.setDomain(domain);
             cookie.setPath("/");
 
             response.addCookie(cookie);
