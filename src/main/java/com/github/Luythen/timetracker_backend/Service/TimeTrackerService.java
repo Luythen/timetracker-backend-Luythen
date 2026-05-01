@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.github.Luythen.timetracker_backend.Model.TimeTrackerModel;
+import com.github.Luythen.timetracker_backend.Model.UserModel;
 import com.github.Luythen.timetracker_backend.Repository.TimeTrackerRepository;
 
 @Service
@@ -30,8 +31,8 @@ public class TimeTrackerService {
         return timeTrackerRepository.findById(id);
     }
 
-    public List<TimeTrackerModel> getUserList (String userID) {
-        return timeTrackerRepository.findAllByUserID(userID);
+    public List<TimeTrackerModel> getUserList (UserModel userModel) {
+        return timeTrackerRepository.findAllByUserModel(userModel);
     }
 
     public List<TimeTrackerModel> getList () {
