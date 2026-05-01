@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.Luythen.timetracker_backend.Dto.LoginDto;
 import com.github.Luythen.timetracker_backend.Model.UserModel;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+
+    @Value("${${Timetracker.origin}}")
+    private String domain;
     
     private final AuthService authService;
 
@@ -35,6 +39,7 @@ public class AuthController {
             cookie.setMaxAge(86400);
             cookie.setSecure(true);
             cookie.setHttpOnly(true);
+            cookie.setDomain(domain);
             cookie.setPath("/");
 
             response.addCookie(cookie);
