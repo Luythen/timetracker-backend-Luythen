@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.Luythen.timetracker_backend.Dto.LoginDto;
+import com.github.Luythen.timetracker_backend.Dto.UserDto;
 import com.github.Luythen.timetracker_backend.Model.UserModel;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 
 @RestController
@@ -68,5 +72,14 @@ public class AuthController {
         return "entity";
     }
     
+    @GetMapping("/me")
+    public ResponseEntity<UserDto> getUserInfo (@AuthenticationPrincipal UserModel userModel) {
+        UserDto userDto = new UserDto();
+        userDto.setEmail(userModel.getEmail());
+        userDto.setId(userModel.getId());
+        userDto.setUsername(userModel.getUsername());
+
+        return ResponseEntity.ok(userDto);
+    }
 
 }
