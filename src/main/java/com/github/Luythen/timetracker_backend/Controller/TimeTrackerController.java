@@ -30,6 +30,7 @@ public class TimeTrackerController {
 
     @PostMapping("/create")
     public TimeTrackerModel create(@RequestBody TimeTrackerModel timeTrackerModel) {
+        timeTrackerModel.setStartDate(LocalDate.now());
         return timeTrackerService.start(timeTrackerModel);
     }
 
