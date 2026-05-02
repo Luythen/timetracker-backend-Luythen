@@ -3,7 +3,6 @@ package com.github.Luythen.timetracker_backend.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.Luythen.timetracker_backend.Dto.CategoryDto;
 import com.github.Luythen.timetracker_backend.Model.CategoryModel;
 import com.github.Luythen.timetracker_backend.Model.UserModel;
 import com.github.Luythen.timetracker_backend.Service.CategoryService;
@@ -30,11 +29,7 @@ public class CategoryController {
     }
 
     @PostMapping("/create")
-    public CategoryModel create(@RequestBody CategoryDto categoryDto, @AuthenticationPrincipal UserModel userModel) {
-        CategoryModel categoryModel = new CategoryModel();
-        categoryModel.setName(categoryDto.getName());
-        categoryModel.setUserModel(userModel);
-
+    public CategoryModel create(@RequestBody CategoryModel categoryModel) {
         return categoryService.createCategory(categoryModel);
     }
 
