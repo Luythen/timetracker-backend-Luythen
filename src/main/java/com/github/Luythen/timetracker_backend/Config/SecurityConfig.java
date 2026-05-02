@@ -3,6 +3,7 @@ package com.github.Luythen.timetracker_backend.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,20 +15,19 @@ import com.github.Luythen.timetracker_backend.JwtFilter;
 
 @Configuration
 public class SecurityConfig {
-
+    
     @Autowired
     private JwtFilter jwtFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain (HttpSecurity httpSecurity) {
-        return httpSecurity.sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        return httpSecurity.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .cors(Customizer.withDefaults())
             .authorizeHttpRequests(auth -> 
             auth.requestMatchers("/timetracker/**").authenticated()
             .requestMatchers("/category/**").authenticated()
-            .requestMatchers("/auth/login").permitAll()
-            .requestMatchers("/auth/register").permitAll()
-            .requestMatchers("/auth/me").authenticated()
-            .requestMatchers("/auth/logout").authenticated()
+            .requestMatchers("/auth/me", "/auth/logout").authenticated()
+            .requestMatchers("/auth/login", "/auth/register").permitAll()
             .anyRequest().permitAll()
         )
         .csrf(csrf -> csrf.disable())
