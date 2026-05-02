@@ -24,7 +24,10 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> 
             auth.requestMatchers("/timetracker/**").authenticated()
             .requestMatchers("/category/**").authenticated()
-            .requestMatchers("/auth/**").permitAll()
+            .requestMatchers("/auth/login").permitAll()
+            .requestMatchers("/auth/register").permitAll()
+            .requestMatchers("/auth/me").authenticated()
+            .requestMatchers("/auth/logout").authenticated()
             .anyRequest().permitAll()
         )
         .csrf(csrf -> csrf.disable())
