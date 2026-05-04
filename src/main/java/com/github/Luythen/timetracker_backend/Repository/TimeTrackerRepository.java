@@ -13,7 +13,7 @@ public interface TimeTrackerRepository extends MongoRepository<TimeTrackerModel,
 
     List<TimeTrackerModel> findAllByUserModel (UserModel userModel);
 
-    @Update("{'$set': '{'stopDate': ?1}'}")
+    @Update("{'$set': {'stopDate': ?1}}")
     public void findAndSetStopDateById (String id, LocalDateTime stopDate); 
 
 }
