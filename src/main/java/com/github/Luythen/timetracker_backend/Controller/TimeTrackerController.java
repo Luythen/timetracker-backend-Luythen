@@ -6,8 +6,8 @@ import com.github.Luythen.timetracker_backend.Model.TimeTrackerModel;
 import com.github.Luythen.timetracker_backend.Model.UserModel;
 import com.github.Luythen.timetracker_backend.Service.TimeTrackerService;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,13 +31,13 @@ public class TimeTrackerController {
 
     @PostMapping("/create")
     public TimeTrackerModel create(@RequestBody TimeTrackerModel timeTrackerModel) {
-        timeTrackerModel.setStartDate(LocalDateTime.now());
+        timeTrackerModel.setStartDate(LocalDateTime.now(ZoneId.of("GMT+2")));
         return timeTrackerService.start(timeTrackerModel);
     }
 
     @PostMapping("/stop/{id}")
     public String stop(@PathVariable String id) {
-        timeTrackerService.stop(id, LocalDate.now());
+        timeTrackerService.stop(id, LocalDateTime.now(ZoneId.of("GMT+2")));
         
         return "{'message': 'Timer have been stop for the id: "+ id +" '}";
     }
