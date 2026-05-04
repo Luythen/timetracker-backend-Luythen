@@ -7,6 +7,7 @@ import com.github.Luythen.timetracker_backend.Model.UserModel;
 import com.github.Luythen.timetracker_backend.Service.TimeTrackerService;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +31,7 @@ public class TimeTrackerController {
 
     @PostMapping("/create")
     public TimeTrackerModel create(@RequestBody TimeTrackerModel timeTrackerModel) {
-        timeTrackerModel.setStartDate(LocalDate.now());
+        timeTrackerModel.setStartDate(LocalDateTime.now());
         return timeTrackerService.start(timeTrackerModel);
     }
 

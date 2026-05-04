@@ -1,6 +1,6 @@
 package com.github.Luythen.timetracker_backend.Model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,8 +18,8 @@ public class TimeTrackerModel {
     @DocumentReference
     private UserModel userModel;
 
-    private LocalDate startDate;
-    private LocalDate stopDate;
+    private LocalDateTime startDate;
+    private LocalDateTime stopDate;
 
     public String getId() {
         return id;
@@ -37,19 +37,19 @@ public class TimeTrackerModel {
         this.category = category;
     }
 
-    public LocalDate getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getStopDate() {
+    public LocalDateTime getStopDate() {
         return stopDate;
     }
 
-    public void setStopDate(LocalDate stopDate) {
+    public void setStopDate(LocalDateTime stopDate) {
         this.stopDate = stopDate;
     }
 
