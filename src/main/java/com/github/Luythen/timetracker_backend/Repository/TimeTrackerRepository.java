@@ -1,6 +1,6 @@
 package com.github.Luythen.timetracker_backend.Repository;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -14,6 +14,6 @@ public interface TimeTrackerRepository extends MongoRepository<TimeTrackerModel,
     List<TimeTrackerModel> findAllByUserModel (UserModel userModel);
 
     @Update("{'$set': '{'stopDate': ?1}'}")
-    public void findAndSetStopDateById (String id, LocalDate stopDate); 
+    public void findAndSetStopDateById (String id, LocalDateTime stopDate); 
 
 }
