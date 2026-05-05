@@ -11,6 +11,6 @@ import com.github.Luythen.timetracker_backend.Model.UserModel;
 public interface CategoryRepository extends MongoRepository<CategoryModel, String> {
     List<CategoryModel> findAllByUserModel (UserModel userModel);
 
-    @Update("{'set': {'name': ?1}}")
+    @Update("{'$set': {'name': ?1}}")
     public void findAndSetNameById (String id, String newName);
 }
