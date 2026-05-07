@@ -27,8 +27,7 @@ public class UserModel implements UserDetails {
     
     @JsonIgnore
     private String password;
-
-    @JsonIgnore
+    
     private String role;
 
     public String getId() {
