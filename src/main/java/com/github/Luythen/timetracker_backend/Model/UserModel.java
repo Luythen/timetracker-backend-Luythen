@@ -10,6 +10,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Document(collection = "User")
 public class UserModel implements UserDetails {
 
@@ -19,10 +21,14 @@ public class UserModel implements UserDetails {
     @Indexed(unique = true)
     private String username;
     
+    @JsonIgnore
     @Indexed(unique = true)
     private String email;
     
+    @JsonIgnore
     private String password;
+
+    @JsonIgnore
     private String role;
 
     public String getId() {
@@ -57,6 +63,7 @@ public class UserModel implements UserDetails {
         this.role = role;
     }
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         ArrayList<GrantedAuthority> authorities = new ArrayList<>();
