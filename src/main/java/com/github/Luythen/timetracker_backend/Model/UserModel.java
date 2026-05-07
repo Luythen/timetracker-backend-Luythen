@@ -18,6 +18,7 @@ public class UserModel implements UserDetails {
 
     @Indexed(unique = true)
     private String username;
+    
     @Indexed(unique = true)
     private String email;
     
