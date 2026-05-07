@@ -88,6 +88,7 @@ public class AuthController {
         userDto.setEmail(userModel.getEmail());
         userDto.setId(userModel.getId());
         userDto.setUsername(userModel.getUsername());
+        userDto.setRole(userModel.getRole());
 
         return ResponseEntity.ok(userDto);
     }
