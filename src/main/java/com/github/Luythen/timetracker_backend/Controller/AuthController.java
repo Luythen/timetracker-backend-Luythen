@@ -68,6 +68,7 @@ public class AuthController {
             cookie.setPath("/");
             cookie.setAttribute("SameSite", "None");
             cookie.setDomain(request.getServerName());
+            cookie.setSecure(true);
 
             response.addCookie(cookie);
         }
