@@ -19,8 +19,13 @@ public class TimeTrackerService {
         this.timeTrackerRepository = timeTrackerRepository;
     }
 
-    public TimeTrackerModel start (TimeTrackerModel timeTrackerModel) {
-        return timeTrackerRepository.insert(timeTrackerModel);
+    public TimeTrackerModel start (TimeTrackerModel timeTrackerModel, UserModel userModel) throws Exception {
+        Optional<TimeTrackerModel> tModel = timeTrackerRepository.findOneByUserModelAndStopDate(userModel, null);
+        if (tModel.isEmpty()) {
+            return timeTrackerRepository.save(timeTrackerModel);
+        }
+
+        throw new Exception("Cant not have more then one timer active");
     }
 
     public void stop (String timeTrackerID, LocalDateTime stopDate) {
