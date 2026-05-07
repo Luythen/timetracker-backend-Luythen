@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.Luythen.timetracker_backend.Dto.LoginDto;
+import com.github.Luythen.timetracker_backend.Dto.RegisterDto;
 import com.github.Luythen.timetracker_backend.Dto.UserDto;
 import com.github.Luythen.timetracker_backend.Model.UserModel;
 
@@ -51,8 +52,13 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register (@RequestBody UserModel registerReq) {
+    public ResponseEntity<String> register (@RequestBody RegisterDto registerDto) {
         try {
+            UserModel registerReq = new UserModel();
+            registerReq.setEmail(registerDto.getEmail());
+            registerReq.setUsername(registerDto.getUsername());
+            registerReq.setPassword(registerDto.getPassword());
+
             authService.registerUser(registerReq);
             return ResponseEntity.status(200).body("{'message': 'Register new User successfully'}");
         } catch (Exception e) {

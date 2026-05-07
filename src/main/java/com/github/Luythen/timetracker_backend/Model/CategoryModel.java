@@ -1,7 +1,6 @@
 package com.github.Luythen.timetracker_backend.Model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
@@ -11,8 +10,7 @@ public class CategoryModel {
     @Id
     private String id;
     private String name;
-    
-    @ReadOnlyProperty
+
     @DocumentReference
     private UserModel userModel;
     

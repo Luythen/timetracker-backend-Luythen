@@ -13,8 +13,7 @@ public class TimeTrackerModel {
     @Id
     private String id;
 
-    @ReadOnlyProperty
-    @DocumentReference(lookup = "{ '_id' : ?#{#target} }")
+    @DocumentReference
     private CategoryModel category;
 
     @ReadOnlyProperty
