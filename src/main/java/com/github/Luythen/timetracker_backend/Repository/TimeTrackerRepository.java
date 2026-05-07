@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Update;
-
 import com.github.Luythen.timetracker_backend.Model.TimeTrackerModel;
 import com.github.Luythen.timetracker_backend.Model.UserModel;
 
@@ -18,4 +18,7 @@ public interface TimeTrackerRepository extends MongoRepository<TimeTrackerModel,
     public void findAndSetStopDateById (String id, LocalDateTime stopDate); 
 
     Optional<TimeTrackerModel> findOneByUserModelAndStopDate (UserModel userModel, LocalDateTime stopDate);
+
+    @Update("{'$set': {'category': ?1 } }")
+    void findAndUpdateCategoryById (String id, ObjectId categoryId);
 }

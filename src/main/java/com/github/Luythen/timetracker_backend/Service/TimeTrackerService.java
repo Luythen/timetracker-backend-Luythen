@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import com.github.Luythen.timetracker_backend.Model.TimeTrackerModel;
@@ -42,5 +43,13 @@ public class TimeTrackerService {
 
     public List<TimeTrackerModel> getList () {
         return timeTrackerRepository.findAll();
+    }
+
+    public void updateCategory (TimeTrackerModel timeTrackerModel) throws Exception {
+        try {
+            timeTrackerRepository.findAndUpdateCategoryById(timeTrackerModel.getId(), new ObjectId(timeTrackerModel.getCategory().getId()));
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 }
