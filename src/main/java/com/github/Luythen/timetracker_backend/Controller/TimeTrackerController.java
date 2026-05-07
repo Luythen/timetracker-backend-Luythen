@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -30,9 +31,13 @@ public class TimeTrackerController {
     }
 
     @PostMapping("/create")
-    public TimeTrackerModel create(@RequestBody TimeTrackerModel timeTrackerModel) {
+    public ResponseEntity<?> create(@RequestBody TimeTrackerModel timeTrackerModel, @AuthenticationPrincipal UserModel userModel) {
         timeTrackerModel.setStartDate(LocalDateTime.now(ZoneId.of("GMT+2")));
-        return timeTrackerService.start(timeTrackerModel);
+        try {
+            return ResponseEntity.ok(timeTrackerService.start(timeTrackerModel, userModel));
+        } catch (Exception e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
     }
 
     @PostMapping("/stop/{id}")
