@@ -5,6 +5,7 @@ public class UserDto {
     private String id;
     private String username;
     private String email;
+    private String role;
     
     public String getId() {
         return id;
@@ -24,7 +25,11 @@ public class UserDto {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    
+    public String getRole() {
+        return role;
+    }
+    public void setRole(String role) {
+        this.role = role;
+    }
 
 }
