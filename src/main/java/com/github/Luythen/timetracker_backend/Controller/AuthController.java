@@ -66,6 +66,8 @@ public class AuthController {
             Cookie cookie = new Cookie("Token", "token");
             cookie.setMaxAge(0);
             cookie.setPath("/");
+            cookie.setAttribute("SameSite", "None");
+            cookie.setDomain(request.getServerName());
 
             response.addCookie(cookie);
         }
