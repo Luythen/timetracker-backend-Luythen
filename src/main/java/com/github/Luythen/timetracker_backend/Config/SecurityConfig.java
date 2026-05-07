@@ -28,6 +28,7 @@ public class SecurityConfig {
             .requestMatchers("/category/**").authenticated()
             .requestMatchers("/auth/me", "/auth/logout").authenticated()
             .requestMatchers("/auth/login", "/auth/register").permitAll()
+            .requestMatchers("/admin/**").hasAuthority("TM_Admin")
             .anyRequest().permitAll()
         )
         .csrf(csrf -> csrf.disable())
