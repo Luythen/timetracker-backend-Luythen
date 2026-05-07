@@ -33,6 +33,7 @@ public class AuthService {
     }
 
     public void registerUser (UserModel user) throws Exception {
+        if (user.getEmail().isEmpty() || user.getUsername().isEmpty() || user.getPassword().isEmpty()) throw new Exception("Field or Fields cannot be empty");
         try {
             String passwrd = user.getPassword();
             user.setPassword(passwordEncoder.encode(passwrd));
